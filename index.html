@@ -123,7 +123,48 @@
       gap: 1rem;
     }
 
-    </style>
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      display: none;
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 500px;
+      color: var(--text);
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      text-align: left;
+      position: relative;
+    }
+
+    .modal-content h2 {
+      margin-top: 0;
+      color: var(--accent);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+</style>
 </head>
 <body>
   <header>
@@ -216,10 +257,11 @@ sectionWrapper.appendChild(sectionTitle);
               const card = document.createElement("div");
               card.className = "command";
               card.innerHTML = `
-                <div class="command-name">+${command}</div>
-                <div class="command-desc">${desc}</div>
-                <div class="command-perm">Zugriff: ${perm}</div>
-              `;
+  <div class="command-name">+${command}</div>
+  <div class="command-desc">${desc}</div>
+  <div class="command-perm">Zugriff: ${perm}</div>
+`;
+card.onclick = () => openModal(command, info);
               sectionGrid.appendChild(card);
             }
 
@@ -259,5 +301,30 @@ sectionWrapper.appendChild(sectionTitle);
         document.getElementById("bot-ping").textContent = "Fehler";
       });
   </script>
+<div class="modal" id="commandModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <h2 id="modalTitle">Command</h2>
+      <p id="modalDesc"></p>
+      <p><strong>Zugriff:</strong> <span id="modalPerm"></span></p>
+      <p><strong>Cooldown:</strong> <span id="modalCooldown">0 Sekunden</span></p>
+      <p><strong>Verwendung:</strong> <code id="modalUsage">+befehl</code></p>
+    </div>
+  </div>
+
+<script>
+  function openModal(command, info) {
+    document.getElementById('modalTitle').textContent = '+' + command;
+    document.getElementById('modalDesc').textContent = info.description || 'Keine Beschreibung.';
+    document.getElementById('modalPerm').textContent = info.permission || 'everyone';
+    document.getElementById('modalCooldown').textContent = info.cooldown || '0 Sekunden';
+    document.getElementById('modalUsage').textContent = info.usage || '+' + command;
+    document.getElementById('commandModal').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('commandModal').style.display = 'none';
+  }
+</script>
 </body>
 </html>
