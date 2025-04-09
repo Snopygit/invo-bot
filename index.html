@@ -206,14 +206,7 @@
 
           const now = new Date().toLocaleDateString("de-DE");
           document.getElementById("last-updated").textContent = now;
-        })
-        .catch(err => {
-          document.getElementById("command-list").innerHTML = "Fehler beim Laden der Befehle.";
-          console.error("Fehler beim Laden von commands.json:", err);
-        });
-    }
-
-          const now = new Date().toLocaleDateString("de-DE");
+        }
           document.getElementById("last-updated").textContent = now;
         })
         .catch(err => {
