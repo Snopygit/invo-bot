@@ -66,6 +66,12 @@
       color: var(--muted);
     }
 
+    .command-perm {
+      font-size: 0.8rem;
+      color: #777;
+      margin-top: 0.3rem;
+    }
+
     footer {
       margin-top: 3rem;
       text-align: center;
@@ -77,7 +83,7 @@
 <body>
   <header>
     <h1>🛠️ Invo-Bot Befehlsübersicht</h1>
-    <p>Hier findest du alle verfügbaren Commands für den Stream.</p>
+    <p>Hier findest du alle verfügbaren Commands für deinen Stream.</p>
   </header>
 
   <section class="command-grid" id="command-list">
@@ -96,15 +102,20 @@
         const container = document.getElementById("command-list");
         container.innerHTML = "";
 
-        Object.entries(data).forEach(([command, desc]) => {
+        for (const command in data) {
+          const info = data[command];
+          const desc = info["description"] || "Keine Beschreibung";
+          const perm = info["permission"] || "everyone";
+
           const card = document.createElement("div");
           card.className = "command";
           card.innerHTML = `
             <div class="command-name">+${command}</div>
             <div class="command-desc">${desc}</div>
+            <div class="command-perm">Zugriff: ${perm}</div>
           `;
           container.appendChild(card);
-        });
+        }
 
         const now = new Date().toLocaleDateString("de-DE");
         document.getElementById("last-updated").textContent = now;
