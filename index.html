@@ -98,24 +98,6 @@
       display: block;
     }
 
-    .system-info {
-      background: var(--card-bg);
-      padding: 1.5rem;
-      border-radius: 12px;
-      margin-top: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-    }
-
-    .info-block {
-      display: flex;
-      justify-content: space-between;
-      font-weight: 500;
-      font-size: 1rem;
-      color: var(--muted);
-    }
-
     footer {
       margin-top: 3rem;
       text-align: center;
@@ -154,11 +136,6 @@
       <li>💻 Maintainer: Snopy</li>
       <li>🛠️ Features: Clip-Erstellung, Ping-System, Minigames</li>
     </ul>
-    <div class="system-info">
-      <div class="info-block"><span>⏱️ Uptime</span> <span id="uptime">Wird geladen...</span></div>
-      <div class="info-block"><span>🧠 CPU-Auslastung</span> <span id="cpu">Wird geladen...</span></div>
-      <div class="info-block"><span>💾 RAM-Auslastung</span> <span id="ram">Wird geladen...</span></div>
-    </div>
   </section>
 
   <script>
@@ -167,33 +144,6 @@
       document.querySelectorAll('nav button').forEach(el => el.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
       document.querySelector(`nav button[onclick*="${tabId}"]`).classList.add('active');
-    }
-
-    let totalSeconds = 0;
-
-    function startUptimeCounter() {
-      setInterval(() => {
-        totalSeconds++;
-        const h = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
-        const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
-        const s = String(totalSeconds % 60).padStart(2, '0');
-        document.getElementById("uptime").textContent = `${h}:${m}:${s}`;
-      }, 1000);
-    }
-
-    function fetchSystemInfo() {
-      fetch("system.json")
-        .then(res => res.json())
-        .then(stats => {
-          const now = Math.floor(Date.now() / 1000);
-          const start = parseInt(stats.start);
-          totalSeconds = now - start;
-
-          document.getElementById("cpu").textContent = stats.cpu;
-          document.getElementById("ram").textContent = stats.ram;
-          startUptimeCounter();
-        })
-        .catch(err => console.error("Fehler beim Laden von system.json:", err));
     }
 
     function fetchCommands() {
@@ -227,7 +177,6 @@
         });
     }
 
-    fetchSystemInfo();
     fetchCommands();
   </script>
 </body>
