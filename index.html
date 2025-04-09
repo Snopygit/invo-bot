@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Invo-Bot Befehle</title>
+  <title>Invo-Bot Website</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -26,9 +26,31 @@
       font-family: 'Inter', sans-serif;
     }
 
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      color: var(--accent);
+      font-size: 1.1rem;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 4px;
+      transition: border-color 0.2s;
+    }
+
+    nav button.active {
+      border-color: var(--accent);
+    }
+
     header {
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
     }
 
     header h1 {
@@ -72,6 +94,14 @@
       margin-top: 0.3rem;
     }
 
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
     footer {
       margin-top: 3rem;
       text-align: center;
@@ -82,20 +112,44 @@
 </head>
 <body>
   <header>
-    <h1>🛠️ Invo-Bot Befehlsübersicht</h1>
-    <p>Hier findest du alle verfügbaren Commands für deinen Stream.</p>
+    <h1>🔧 Invo-Bot</h1>
+    <p>Willkommen zur offiziellen Infoseite des Invo-Bots.</p>
   </header>
 
-  <section class="command-grid" id="command-list">
-    <p>Lade Befehle...</p>
+  <nav>
+    <button onclick="showTab('commands')" class="active">📜 Commands</button>
+    <button onclick="showTab('info')">ℹ️ Bot Info</button>
+  </nav>
+
+  <section id="commands" class="tab-content active">
+    <div class="command-grid" id="command-list">
+      <p>Lade Befehle...</p>
+    </div>
+    <footer>
+      Letzte Aktualisierung: <span id="last-updated">Unbekannt</span><br>
+      Bereitgestellt via GitHub Pages
+    </footer>
   </section>
 
-  <footer>
-    Letzte Aktualisierung: <span id="last-updated">Unbekannt</span><br>
-    Bereitgestellt via GitHub Pages
-  </footer>
+  <section id="info" class="tab-content">
+    <h2>ℹ️ Über den Bot</h2>
+    <p>Der Invo-Bot ist ein Community-Tool, das unter anderem mit Commands, Games und Twitch-Aktionen ausgestattet ist. Er hilft Mods und Zuschauern gleichermaßen, den Stream interaktiver und spaßiger zu gestalten.</p>
+    <ul>
+      <li>📅 Entwickelt seit: 2024</li>
+      <li>⚙️ Plattform: Twitch & Python</li>
+      <li>💻 Maintainer: Snopy</li>
+      <li>🛠️ Features: Clip-Erstellung, Ping-System, Minigames</li>
+    </ul>
+  </section>
 
   <script>
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('nav button').forEach(el => el.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      document.querySelector(`nav button[onclick*="${tabId}"]`).classList.add('active');
+    }
+
     fetch("commands.json")
       .then(response => response.json())
       .then(data => {
