@@ -104,7 +104,26 @@
       font-size: 0.85rem;
       color: var(--muted);
     }
-  </style>
+  .category-wrapper {
+      margin-bottom: 2rem;
+    }
+
+    .category-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 0.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .command-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    </style>
 </head>
 <body>
   <header>
@@ -178,10 +197,13 @@
 
           for (const category of Object.keys(categories)) {
             const sortedCommands = Object.keys(categories[category]).sort();
-            const sectionTitle = document.createElement("h3");
-            sectionTitle.textContent = category;
-            sectionTitle.style.margin = "1rem 0 0.5rem 0";
-            container.appendChild(sectionTitle);
+            const sectionWrapper = document.createElement("div");
+sectionWrapper.className = "category-wrapper";
+
+const sectionTitle = document.createElement("div");
+sectionTitle.className = "category-title";
+sectionTitle.textContent = category;
+sectionWrapper.appendChild(sectionTitle);
 
             const sectionGrid = document.createElement("div");
             sectionGrid.className = "command-grid";
@@ -201,7 +223,8 @@
               sectionGrid.appendChild(card);
             }
 
-            container.appendChild(sectionGrid);
+            sectionWrapper.appendChild(sectionGrid);
+            container.appendChild(sectionWrapper);
           }
 
           const now = new Date().toLocaleDateString("de-DE");
