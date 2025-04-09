@@ -2,6 +2,7 @@ import json
 import psutil
 import threading
 import time
+import subprocess
 from datetime import timedelta
 
 # Startzeit für die Uptime
@@ -23,19 +24,25 @@ def get_system_info():
     with open("system.json", "w") as f:
         json.dump(data, f, indent=2)
 
-# Endlosschleife im Hintergrund
+# Datei zu GitHub pushen
+def git_push():
+    try:
+        subprocess.run(["git", "add", "system.json"], check=True)
+        subprocess.run(["git", "commit", "-m", "update system info"], check=True)
+        subprocess.run(["git", "push"], check=True)
+        print("✅ system.json erfolgreich gepusht.")
+    except subprocess.CalledProcessError as e:
+        print(f"❌ Git-Fehler: {e}")
 
+# Endlosschleife im Hintergrund
 def start_system_writer():
     def write_loop():
         while True:
             get_system_info()
-            time.sleep(60)
+            git_push()
+            time.sleep(120)  # alle 2 Minuten
 
     threading.Thread(target=write_loop, daemon=True).start()
 
 # Diese Funktion rufst du beim Start deines Bots auf:
-# start_system_writer()
-
-# Beispielintegration in deinen Bot-Code:
-# from system_writer import start_system_writer
 # start_system_writer()
