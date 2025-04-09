@@ -1,54 +1,67 @@
 {
   "Clip": {
     "description": "Erstellt einen Clip.",
-    "permission": "everyone"
+    "permission": "everyone",
+    "category": "Tools"
   },
   "Botinfo": {
     "description": "Zeige Informationen vom Bot an.",
-    "permission": "everyone"
+    "permission": "everyone",
+    "category": "Tools"
   },
   "Streak": {
     "description": "Zeigt die Dailystreak an.",
-    "permission": "everyone"
+    "permission": "everyone",
+    "category": "Tools"
   },
   "Pingme": {
     "description": "Werde beim Anfang des streams gepingt.",
-    "permission": "everyone"
+    "permission": "everyone",
+    "category": "Tools"
   },
   "stoppingme": {
     "description": "Halte das Pingen am anfang des Streams an.",
-    "permission": "everyone"
+    "permission": "everyone",
+    "category": "Tools"
   },
   "slots": {
     "description": "Spiele Slots.",
-    "permission": "everyone"
+    "permission": "everyone",
+    "category": "Minigames"
   },
   "rps": {
     "description": "Spiele Schere Stein papier gegen den Bot.",
-    "permission": "everyone"
+    "permission": "everyone",
+    "category": "Minigames"
   },
   "guess": {
     "description": "Rate die Zahl die der Bot sich ausdenkt",
-    "permission": "everyone"
+    "permission": "everyone",
+    "category": "Minigames"
   },
   "coinflip": {
     "description": "Mache einen Coinflip",
-    "permission": "everyone"
+    "permission": "everyone",
+    "category": "Minigames"
   },
   "disable": {
     "description": "Deaktiviere einen Command",
-    "permission": "Moderator"
+    "permission": "Moderator",
+    "category": "Modding"
   },
   "enable": {
     "description": "Aktiviere einen Command",
-    "permission": "Moderator"
+    "permission": "Moderator",
+    "category": "Modding"
   },
   "5min": {
     "description": "Starte einen 5 Minuten Timer",
-    "permission": "Moderator"
+    "permission": "Moderator",
+    "category": "Modding"
   },
   "5minc": {
     "description": "Stoppe den 5 Minuten Timer",
-    "permission": "Moderator"
+    "permission": "Moderator",
+    "category": "Modding"
   }
 }
