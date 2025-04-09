@@ -1,45 +1,83 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Invo-Bot Befehle</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #121212;
-      color: #fff;
-      margin: 40px;
+      margin: 0;
+      padding: 2rem;
+      background-color: #1e1e1e;
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
     }
     h1 {
       color: #00ffe4;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .command-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
     }
     .command {
-      margin-bottom: 10px;
+      background-color: #2b2b2b;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     }
     .command-name {
-      font-weight: bold;
+      font-weight: 600;
       color: #80ffea;
+      font-size: 1.1rem;
     }
     .command-desc {
-      margin-left: 10px;
       color: #ccc;
+      margin-top: 0.3rem;
+    }
+    .footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #777;
     }
   </style>
 </head>
 <body>
-  <h1>🎮 Invo-Bot Befehle</h1>
-  <div class="command">
-    <span class="command-name">+clip</span>
-    <span class="command-desc">Erstellt einen Twitch-Clip.</span>
+  <h1>📜 Invo-Bot Befehle</h1>
+  <div class="command-list" id="command-list">
+    <p>Lade Befehle...</p>
   </div>
-  <div class="command">
-    <span class="command-name">+disableclip</span>
-    <span class="command-desc">Deaktiviert das Clip-Feature (nur Mod).</span>
+
+  <div class="footer">
+    Letzte Aktualisierung: <span id="last-updated">Unbekannt</span>
   </div>
-  <div class="command">
-    <span class="command-name">+enableclip</span>
-    <span class="command-desc">Aktiviert das Clip-Feature (nur Mod).</span>
-  </div>
-  <!-- Mehr cmds hier
+
+  <script>
+    fetch("commands.json")
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById("command-list");
+        container.innerHTML = "";
+        Object.entries(data).forEach(([command, desc]) => {
+          const div = document.createElement("div");
+          div.className = "command";
+          div.innerHTML = `
+            <div class="command-name">+${command}</div>
+            <div class="command-desc">${desc}</div>
+          `;
+          container.appendChild(div);
+        });
+
+        const now = new Date().toLocaleDateString("de-DE");
+        document.getElementById("last-updated").textContent = now;
+      })
+      .catch(err => {
+        document.getElementById("command-list").innerHTML = "Fehler beim Laden der Befehle.";
+        console.error("Fehler beim Laden von commands.json:", err);
+      });
+  </script>
 </body>
 </html>
