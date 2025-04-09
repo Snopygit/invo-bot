@@ -7,47 +7,47 @@
     "description": "Zeige Informationen vom Bot an.",
     "permission": "everyone"
   },
-    "Streak": {
+  "Streak": {
     "description": "Zeigt die Dailystreak an.",
     "permission": "everyone"
   },
-    "Pingme": {
+  "Pingme": {
     "description": "Werde beim Anfang des streams gepingt.",
     "permission": "everyone"
   },
-    "stoppingme": {
+  "stoppingme": {
     "description": "Halte das Pingen am anfang des Streams an.",
     "permission": "everyone"
   },
-    "slots": {
+  "slots": {
     "description": "Spiele Slots.",
     "permission": "everyone"
   },
-    "rps": {
+  "rps": {
     "description": "Spiele Schere Stein papier gegen den Bot.",
     "permission": "everyone"
   },
-    "guess": {
+  "guess": {
     "description": "Rate die Zahl die der Bot sich ausdenkt",
     "permission": "everyone"
   },
-    "coinflip": {
+  "coinflip": {
     "description": "Mache einen Coinflip",
     "permission": "everyone"
   },
-    "disable": {
+  "disable": {
     "description": "Deaktiviere einen Command",
     "permission": "Moderator"
   },
-    "enable": {
+  "enable": {
     "description": "Aktiviere einen Command",
     "permission": "Moderator"
   },
-    "5min": {
+  "5min": {
     "description": "Starte einen 5 Minuten Timer",
     "permission": "Moderator"
   },
-    "5minc": {
+  "5minc": {
     "description": "Stoppe den 5 Minuten Timer",
     "permission": "Moderator"
   }
