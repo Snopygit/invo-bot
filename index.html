@@ -314,6 +314,7 @@ card.onclick = () => openModal(command, info);
         document.getElementById("bot-ping").textContent = "Fehler";
       });
   </script>
+<div id="modalOverlay" style="display:none; position:absolute; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); z-index:999;"></div>
 <div class="modal" id="commandModal" onclick="if(event.target === this) closeModal()">
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal()">&times;</button>
@@ -335,6 +336,7 @@ card.onclick = () => openModal(command, info);
     document.body.style.backdropFilter = 'blur(5px)';
     const modal = document.getElementById('commandModal');
     modal.style.top = window.scrollY + 'px';
+    document.getElementById('modalOverlay').style.display = 'block';
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
   }
@@ -345,6 +347,7 @@ card.onclick = () => openModal(command, info);
     setTimeout(() => {
       modal.style.display = 'none';
       modal.classList.remove('fade-out');
+      document.getElementById('modalOverlay').style.display = 'none';
       document.body.style.backdropFilter = 'none';
       document.body.style.overflow = '';
     }, 250);
