@@ -14,10 +14,6 @@
       --muted: #aaaaaa;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
       padding: 2rem;
@@ -104,16 +100,20 @@
 
     .system-info {
       background: var(--card-bg);
-      padding: 1rem 1.5rem;
-      border-radius: 8px;
-      margin-top: 1rem;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
     }
 
-    .system-info p {
-      margin: 0.3rem 0;
+    .info-block {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 500;
+      font-size: 1rem;
       color: var(--muted);
-      font-variant-numeric: tabular-nums;
-      transition: all 0.3s ease;
     }
 
     footer {
@@ -154,10 +154,10 @@
       <li>💻 Maintainer: Snopy</li>
       <li>🛠️ Features: Clip-Erstellung, Ping-System, Minigames</li>
     </ul>
-    <div class="system-info" id="system-info">
-      <p><strong>Uptime:</strong> <span id="uptime">Wird geladen...</span></p>
-      <p><strong>CPU-Auslastung:</strong> <span id="cpu">Wird geladen...</span></p>
-      <p><strong>RAM-Auslastung:</strong> <span id="ram">Wird geladen...</span></p>
+    <div class="system-info">
+      <div class="info-block"><span>⏱️ Uptime</span> <span id="uptime">Wird geladen...</span></div>
+      <div class="info-block"><span>🧠 CPU-Auslastung</span> <span id="cpu">Wird geladen...</span></div>
+      <div class="info-block"><span>💾 RAM-Auslastung</span> <span id="ram">Wird geladen...</span></div>
     </div>
   </section>
 
@@ -169,44 +169,15 @@
       document.querySelector(`nav button[onclick*="${tabId}"]`).classList.add('active');
     }
 
-    function updateUptime(seconds) {
-      function render() {
-        seconds++;
-        const h = String(Math.floor(seconds / 3600)).padStart(2, '0');
-        const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
-        const s = String(seconds % 60).padStart(2, '0');
-        document.getElementById("uptime").textContent = `${h}:${m}:${s}`;
-      }
-      render();
-      setInterval(render, 1000);
-    }
-
     function fetchSystemInfo() {
       fetch("system.json")
         .then(res => res.json())
         .then(stats => {
-          const uptimeParts = stats.uptime.split(":"),
-                hours = parseInt(uptimeParts[0] || 0),
-                minutes = parseInt(uptimeParts[1] || 0),
-                seconds = parseInt(uptimeParts[2] || 0),
-                totalSeconds = hours * 3600 + minutes * 60 + seconds;
-
-          updateUptime(totalSeconds);
+          document.getElementById("uptime").textContent = stats.uptime;
           document.getElementById("cpu").textContent = stats.cpu;
           document.getElementById("ram").textContent = stats.ram;
         })
         .catch(err => console.error("Fehler beim Laden von system.json:", err));
-    }
-
-    function liveUpdateSystemStats() {
-      setInterval(() => {
-        fetch("system.json")
-          .then(res => res.json())
-          .then(stats => {
-            document.getElementById("cpu").textContent = stats.cpu;
-            document.getElementById("ram").textContent = stats.ram;
-          });
-      }, 10000); // alle 10 Sekunden neu laden
     }
 
     function fetchCommands() {
@@ -242,7 +213,6 @@
 
     fetchSystemInfo();
     fetchCommands();
-    liveUpdateSystemStats();
   </script>
 </body>
 </html>
