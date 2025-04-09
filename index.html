@@ -163,19 +163,46 @@
           const container = document.getElementById("command-list");
           container.innerHTML = "";
 
+          const categories = {
+            Minigames: {},
+            Modding: {},
+            Tools: {}
+          };
+
           for (const command in data) {
             const info = data[command];
-            const desc = info["description"] || "Keine Beschreibung";
-            const perm = info["permission"] || "everyone";
+            const category = info["category"] || "Tools";
+            if (!categories[category]) categories[category] = {};
+            categories[category][command] = info;
+          }
 
-            const card = document.createElement("div");
-            card.className = "command";
-            card.innerHTML = `
-              <div class="command-name">+${command}</div>
-              <div class="command-desc">${desc}</div>
-              <div class="command-perm">Zugriff: ${perm}</div>
-            `;
-            container.appendChild(card);
+          for (const category of Object.keys(categories)) {
+            const sortedCommands = Object.keys(categories[category]).sort();
+            const sectionTitle = document.createElement("h3");
+            sectionTitle.textContent = category;
+            sectionTitle.style.margin = "1rem 0 0.5rem 0";
+            container.appendChild(sectionTitle);
+
+            const sectionGrid = document.createElement("div");
+            sectionGrid.className = "command-grid";
+
+            for (const command of sortedCommands) {
+              const info = categories[category][command];
+              const desc = info["description"] || "Keine Beschreibung";
+              const perm = info["permission"] || "everyone";
+
+              const card = document.createElement("div");
+              card.className = "command";
+              card.innerHTML = `
+                <div class="command-name">+${command}</div>
+                <div class="command-desc">${desc}</div>
+                <div class="command-perm">Zugriff: ${perm}</div>
+              `;
+              sectionGrid.appendChild(card);
+            }
+
+            container.appendChild(sectionGrid);
+          }
           }
 
           const now = new Date().toLocaleDateString("de-DE");
