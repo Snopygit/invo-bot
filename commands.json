@@ -2,66 +2,92 @@
   "Clip": {
     "description": "Erstellt einen Clip.",
     "permission": "everyone",
+    "cooldown": "5 Sekunden",
+    "usage": "+clip ",
     "category": "Tools"
   },
   "Botinfo": {
     "description": "Zeige Informationen vom Bot an.",
     "permission": "everyone",
+    "cooldown": "0 Sekunden",
+    "usage": "+botinfo",
     "category": "Tools"
   },
   "Streak": {
     "description": "Zeigt die Dailystreak an.",
     "permission": "everyone",
+    "cooldown": "3 Sekunden",
+    "usage": "+streak",
     "category": "Tools"
   },
   "Pingme": {
     "description": "Werde beim Anfang des Streams gepingt.",
     "permission": "everyone",
+    "cooldown": "0 Sekunden",
+    "usage": "+pingme",
     "category": "Tools"
   },
   "stoppingme": {
     "description": "Halte das Pingen am Anfang des Streams an.",
     "permission": "everyone",
+    "cooldown": "0 Sekunden",
+    "usage": "+stoppingme",
     "category": "Tools"
   },
   "slots": {
     "description": "Spiele Slots.",
     "permission": "everyone",
+    "cooldown": "3 Sekunden",
+    "usage": "+slots",
     "category": "Minigames"
   },
   "rps": {
     "description": "Spiele Schere Stein Papier gegen den Bot.",
     "permission": "everyone",
+    "cooldown": "3 Sekunden",
+    "usage": "+rps schere/stein/papier",
     "category": "Minigames"
   },
   "guess": {
     "description": "Rate die Zahl, die der Bot sich ausdenkt.",
     "permission": "everyone",
+    "cooldown": "3 Sekunden",
+    "usage": "+guess, dannach +zahll [zahl]",
     "category": "Minigames"
   },
   "coinflip": {
     "description": "Mache einen Coinflip.",
     "permission": "everyone",
+    "cooldown": "3 Sekunden",
+    "usage": "+coinflip",
     "category": "Minigames"
   },
   "disable": {
     "description": "Deaktiviere einen Command.",
     "permission": "Moderator",
+    "cooldown": "0 Sekunden",
+    "usage": "+disable [Command]",
     "category": "Modding"
   },
   "enable": {
     "description": "Aktiviere einen Command.",
     "permission": "Moderator",
+    "cooldown": "0 Sekunden",
+    "usage": "+enable [Command]",
     "category": "Modding"
   },
   "5min": {
     "description": "Starte einen 5 Minuten Timer.",
     "permission": "Moderator",
+    "cooldown": "0 Sekunden",
+    "usage": "+5min",
     "category": "Modding"
   },
   "5minc": {
     "description": "Stoppe den 5 Minuten Timer.",
     "permission": "Moderator",
+    "cooldown": "0 Sekunden",
+    "usage": "+5minc",
     "category": "Modding"
   }
 }
