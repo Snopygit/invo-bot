@@ -336,6 +336,7 @@ card.onclick = () => openModal(command, info);
     const modal = document.getElementById('commandModal');
     modal.style.top = window.scrollY + 'px';
     modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
   }
 
   function closeModal() {
@@ -345,6 +346,7 @@ card.onclick = () => openModal(command, info);
       modal.style.display = 'none';
       modal.classList.remove('fade-out');
       document.body.style.backdropFilter = 'none';
+      document.body.style.overflow = '';
     }, 250);
   }
 document.addEventListener('keydown', function(event) {
