@@ -115,23 +115,7 @@
   <nav>
     <button onclick="showTab('commands')" class="active">📜 Commands</button>
     <button onclick="showTab('info')">ℹ️ Bot Info</button>
-  <nav>
-    <button onclick="showTab('commands')" class="active">📜 Commands</button>
-    <button onclick="showTab('info')">ℹ️ Bot Info</button>
-    <button onclick="showTab('ping')">📣 Ping-System</button>
-
-  <section id="ping" class="tab-content">
-    <h2>📣 Ping-System</h2>
-    <p>Aktiviere den <strong>+pingme</strong> Command, um beim nächsten Livestart von <strong>invormativ</strong> im Chat benachrichtigt zu werden.</p>
-    <ul>
-      <li><code>+pingme</code> – Du bekommst eine Nachricht im Chat, wenn der Stream losgeht</li>
-      <li><code>+stoppingme</code> – Du wirst nicht mehr benachrichtigt</li>
-      <li><code>+disable pingme</code> – (nur Mods) Deaktiviert das Pingsystem</li>
-      <li><code>+enable pingme</code> – (nur Mods) Aktiviert das Pingsystem wieder</li>
-    </ul>
-    <p>Beispielnachricht bei Livegang:</p>
-    <code>/me Invo ist live! @Snopy, @andereUser</code>
-  </section>
+  </nav>
 
   <section id="commands" class="tab-content active">
     <div class="command-grid" id="command-list">
@@ -147,7 +131,6 @@
     <h2>ℹ️ Über den Bot</h2>
     <p>Der Invo-Bot ist ein Community-Tool, das unter anderem mit Commands, Games und Twitch-Aktionen ausgestattet ist. Er hilft Mods und Zuschauern gleichermaßen, den Stream interaktiver und spaßiger zu gestalten.</p>
     <ul>
-      <li>📶 Ping: <span id="bot-ping">Wird geladen...</span></li>
       <li>📅 Entwickelt seit: 2024</li>
       <li>⚙️ Plattform: Twitch & Python</li>
       <li>💻 Maintainer: Snopy</li>
@@ -195,17 +178,6 @@
     }
 
     fetchCommands();
-
-    // Füge Ping-Test hinzu
-    const startPing = Date.now();
-    fetch("commands.json")
-      .then(() => {
-        const latency = Date.now() - startPing;
-        document.getElementById("bot-ping").textContent = latency + " ms";
-      })
-      .catch(() => {
-        document.getElementById("bot-ping").textContent = "Fehler";
-      });
   </script>
 </body>
 </html>
