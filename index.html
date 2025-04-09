@@ -170,59 +170,79 @@
     }
 
     function updateUptime(seconds) {
-      setInterval(() => {
+      function render() {
         seconds++;
         const h = String(Math.floor(seconds / 3600)).padStart(2, '0');
         const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
         const s = String(seconds % 60).padStart(2, '0');
         document.getElementById("uptime").textContent = `${h}:${m}:${s}`;
-      }, 1000);
+      }
+      render();
+      setInterval(render, 1000);
     }
 
-    fetch("commands.json")
-      .then(response => response.json())
-      .then(data => {
-        const container = document.getElementById("command-list");
-        container.innerHTML = "";
+    function fetchSystemInfo() {
+      fetch("system.json")
+        .then(res => res.json())
+        .then(stats => {
+          const uptimeParts = stats.uptime.split(":"),
+                hours = parseInt(uptimeParts[0] || 0),
+                minutes = parseInt(uptimeParts[1] || 0),
+                seconds = parseInt(uptimeParts[2] || 0),
+                totalSeconds = hours * 3600 + minutes * 60 + seconds;
 
-        for (const command in data) {
-          const info = data[command];
-          const desc = info["description"] || "Keine Beschreibung";
-          const perm = info["permission"] || "everyone";
+          updateUptime(totalSeconds);
+          document.getElementById("cpu").textContent = stats.cpu;
+          document.getElementById("ram").textContent = stats.ram;
+        })
+        .catch(err => console.error("Fehler beim Laden von system.json:", err));
+    }
 
-          const card = document.createElement("div");
-          card.className = "command";
-          card.innerHTML = `
-            <div class="command-name">+${command}</div>
-            <div class="command-desc">${desc}</div>
-            <div class="command-perm">Zugriff: ${perm}</div>
-          `;
-          container.appendChild(card);
-        }
+    function liveUpdateSystemStats() {
+      setInterval(() => {
+        fetch("system.json")
+          .then(res => res.json())
+          .then(stats => {
+            document.getElementById("cpu").textContent = stats.cpu;
+            document.getElementById("ram").textContent = stats.ram;
+          });
+      }, 10000); // alle 10 Sekunden neu laden
+    }
 
-        const now = new Date().toLocaleDateString("de-DE");
-        document.getElementById("last-updated").textContent = now;
-      })
-      .catch(err => {
-        document.getElementById("command-list").innerHTML = "Fehler beim Laden der Befehle.";
-        console.error("Fehler beim Laden von commands.json:", err);
-      });
+    function fetchCommands() {
+      fetch("commands.json")
+        .then(response => response.json())
+        .then(data => {
+          const container = document.getElementById("command-list");
+          container.innerHTML = "";
 
-    fetch("system.json")
-      .then(res => res.json())
-      .then(stats => {
-        const uptimeParts = stats.uptime.split(":"),
-              hours = parseInt(uptimeParts[0] || 0),
-              minutes = parseInt(uptimeParts[1] || 0),
-              seconds = parseInt(uptimeParts[2] || 0),
-              totalSeconds = hours * 3600 + minutes * 60 + seconds;
+          for (const command in data) {
+            const info = data[command];
+            const desc = info["description"] || "Keine Beschreibung";
+            const perm = info["permission"] || "everyone";
 
-        document.getElementById("cpu").textContent = stats.cpu;
-        document.getElementById("ram").textContent = stats.ram;
+            const card = document.createElement("div");
+            card.className = "command";
+            card.innerHTML = `
+              <div class="command-name">+${command}</div>
+              <div class="command-desc">${desc}</div>
+              <div class="command-perm">Zugriff: ${perm}</div>
+            `;
+            container.appendChild(card);
+          }
 
-        updateUptime(totalSeconds);
-      })
-      .catch(err => console.error("Fehler beim Laden von system.json:", err));
+          const now = new Date().toLocaleDateString("de-DE");
+          document.getElementById("last-updated").textContent = now;
+        })
+        .catch(err => {
+          document.getElementById("command-list").innerHTML = "Fehler beim Laden der Befehle.";
+          console.error("Fehler beim Laden von commands.json:", err);
+        });
+    }
+
+    fetchSystemInfo();
+    fetchCommands();
+    liveUpdateSystemStats();
   </script>
 </body>
 </html>
