@@ -177,6 +177,21 @@
       }
     }
 
+.modal.fade-out {
+      animation: fadeOutModal 0.25s ease forwards;
+    }
+
+@keyframes fadeOutModal {
+      from {
+        opacity: 1;
+        transform: scale(1);
+      }
+      to {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+    }
+
 </style>
 </head>
 <body>
@@ -337,8 +352,13 @@ card.onclick = () => openModal(command, info);
   }
 
   function closeModal() {
-    document.getElementById('commandModal').style.display = 'none';
-    document.body.style.backdropFilter = 'none';
+    const modal = document.getElementById('commandModal');
+    modal.classList.add('fade-out');
+    setTimeout(() => {
+      modal.style.display = 'none';
+      modal.classList.remove('fade-out');
+      document.body.style.backdropFilter = 'none';
+    }, 250);
   }
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') {
