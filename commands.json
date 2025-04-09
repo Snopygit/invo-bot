@@ -13,6 +13,13 @@
     "usage": "+botinfo",
     "category": "Tools"
   },
+    "Commands,help,homepage": {
+    "description": "Schickt ein Link zu der Homepage",
+    "permission": "everyone",
+    "cooldown": "0 Sekunden",
+    "usage": "+commands,help,homepage",
+    "category": "Tools"
+  },
   "Streak": {
     "description": "Zeigt die Dailystreak an.",
     "permission": "everyone",
