@@ -192,7 +192,21 @@
       }
     }
 
-</style>
+.command {
+      position: relative;
+    }
+
+    .command-tip {
+      position: absolute;
+      bottom: 8px;
+      right: 12px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-style: italic;
+      opacity: 0.7;
+    }
+
+
 </head>
 <body>
   <header>
@@ -284,11 +298,8 @@ sectionWrapper.appendChild(sectionTitle);
 
               const card = document.createElement("div");
               card.className = "command";
-              card.innerHTML = `
-  <div class="command-name">+${command}</div>
-  <div class="command-desc">${desc}</div>
-  <div class="command-perm">Zugriff: ${perm}</div>
-`;
+              card.innerHTML = `
+  <div class="command-tip">Klicke für mehr Infos</div>`;
 card.onclick = () => openModal(command, info);
               sectionGrid.appendChild(card);
             }
