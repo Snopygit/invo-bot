@@ -112,6 +112,8 @@
     .system-info p {
       margin: 0.3rem 0;
       color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      transition: all 0.3s ease;
     }
 
     footer {
@@ -153,9 +155,9 @@
       <li>🛠️ Features: Clip-Erstellung, Ping-System, Minigames</li>
     </ul>
     <div class="system-info" id="system-info">
-      <p><strong>Uptime:</strong> Wird geladen...</p>
-      <p><strong>CPU-Auslastung:</strong> Wird geladen...</p>
-      <p><strong>RAM-Auslastung:</strong> Wird geladen...</p>
+      <p><strong>Uptime:</strong> <span id="uptime">Wird geladen...</span></p>
+      <p><strong>CPU-Auslastung:</strong> <span id="cpu">Wird geladen...</span></p>
+      <p><strong>RAM-Auslastung:</strong> <span id="ram">Wird geladen...</span></p>
     </div>
   </section>
 
@@ -165,6 +167,16 @@
       document.querySelectorAll('nav button').forEach(el => el.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
       document.querySelector(`nav button[onclick*="${tabId}"]`).classList.add('active');
+    }
+
+    function updateUptime(seconds) {
+      setInterval(() => {
+        seconds++;
+        const h = String(Math.floor(seconds / 3600)).padStart(2, '0');
+        const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+        const s = String(seconds % 60).padStart(2, '0');
+        document.getElementById("uptime").textContent = `${h}:${m}:${s}`;
+      }, 1000);
     }
 
     fetch("commands.json")
@@ -199,12 +211,16 @@
     fetch("system.json")
       .then(res => res.json())
       .then(stats => {
-        const sys = document.getElementById("system-info");
-        sys.innerHTML = `
-          <p><strong>Uptime:</strong> ${stats.uptime}</p>
-          <p><strong>CPU-Auslastung:</strong> ${stats.cpu}</p>
-          <p><strong>RAM-Auslastung:</strong> ${stats.ram}</p>
-        `;
+        const uptimeParts = stats.uptime.split(":"),
+              hours = parseInt(uptimeParts[0] || 0),
+              minutes = parseInt(uptimeParts[1] || 0),
+              seconds = parseInt(uptimeParts[2] || 0),
+              totalSeconds = hours * 3600 + minutes * 60 + seconds;
+
+        document.getElementById("cpu").textContent = stats.cpu;
+        document.getElementById("ram").textContent = stats.ram;
+
+        updateUptime(totalSeconds);
       })
       .catch(err => console.error("Fehler beim Laden von system.json:", err));
   </script>
