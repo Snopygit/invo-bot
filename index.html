@@ -185,11 +185,10 @@
       fetch("system.json")
         .then(res => res.json())
         .then(stats => {
-          const parts = stats.uptime.split(":");
-          const h = parseInt(parts[0]) || 0;
-          const m = parseInt(parts[1]) || 0;
-          const s = parseInt(parts[2]) || 0;
-          totalSeconds = parseInt(h) * 3600 + parseInt(m) * 60 + parseInt(s);
+          const now = Math.floor(Date.now() / 1000);
+          const start = parseInt(stats.start);
+          totalSeconds = now - start;
+
           document.getElementById("cpu").textContent = stats.cpu;
           document.getElementById("ram").textContent = stats.ram;
           startUptimeCounter();
