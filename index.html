@@ -332,12 +332,19 @@ card.onclick = () => openModal(command, info);
     document.getElementById('modalPerm').textContent = info.permission || 'everyone';
     document.getElementById('modalCooldown').textContent = info.cooldown || '0 Sekunden';
     document.getElementById('modalUsage').textContent = info.usage || '+' + command;
+    document.body.style.backdropFilter = 'blur(5px)';
     document.getElementById('commandModal').style.display = 'flex';
   }
 
   function closeModal() {
     document.getElementById('commandModal').style.display = 'none';
+    document.body.style.backdropFilter = 'none';
   }
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      closeModal();
+    }
+  });
 </script>
 </body>
 </html>
