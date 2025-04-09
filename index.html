@@ -130,10 +130,7 @@
   <section id="info" class="tab-content">
     <h2>ℹ️ Über den Bot</h2>
     <p>Der Invo-Bot ist ein Community-Tool, das unter anderem mit Commands, Games und Twitch-Aktionen ausgestattet ist. Er hilft Mods und Zuschauern gleichermaßen, den Stream interaktiver und spaßiger zu gestalten.</p>
-    <div class="system-info" style="background: var(--card-bg); padding: 1.5rem; border-radius: 12px; margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.7rem;">
-      <div class="info-block" style="font-weight: 500; font-size: 1rem; color: var(--muted);">
-  📶 Ping: <span id="bot-ping">Wird gemessen...</span>
-</div>
+    
     </div>
     <ul>
       <li>📅 Entwickelt seit: 2024</li>
@@ -141,6 +138,14 @@
       <li>💻 Maintainer: Snopy</li>
       <li>🛠️ Features: Clip-Erstellung, Ping-System, Minigames</li>
     </ul>
+    <div class="system-info" style="background: var(--card-bg); padding: 1.5rem; border-radius: 12px; margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.7rem;">
+      <div class="info-block" style="font-weight: 500; font-size: 1rem; color: var(--muted);">
+        📶 Ping: <span id="bot-ping">Wird gemessen...</span>
+        <div style="width: 100%; height: 8px; background: #444; border-radius: 4px; margin-top: 4px;">
+          <div id="ping-bar" style="height: 100%; width: 0%; background: lime; border-radius: 4px;"></div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <script>
@@ -191,6 +196,15 @@
         const pingEnd = performance.now();
         const ping = Math.round(pingEnd - pingStart);
         document.getElementById("bot-ping").textContent = ping + " ms";
+        const bar = document.getElementById("ping-bar");
+        bar.style.width = Math.min(ping, 300) / 3 + "%";
+        if (ping < 100) {
+          bar.style.background = "lime";
+        } else if (ping < 200) {
+          bar.style.background = "orange";
+        } else {
+          bar.style.background = "red";
+        }
       })
       .catch(() => {
         document.getElementById("bot-ping").textContent = "Fehler";
