@@ -1,54 +1,54 @@
 {
   "Clip": {
-    "description": "erstellt einen clip.",
+    "description": "Erstellt einen Clip.",
     "permission": "everyone"
   },
   "Botinfo": {
-    "description": "zeige informationen vom bot an.",
+    "description": "Zeige Informationen vom Bot an.",
     "permission": "everyone"
   },
   "Streak": {
-    "description": "zeigt die dailystreak an.",
+    "description": "Zeigt die Dailystreak an.",
     "permission": "everyone"
   },
-  "pingme": {
-    "description": "werde beim anfang des streams gepingt.",
+  "Pingme": {
+    "description": "Werde beim Anfang des streams gepingt.",
     "permission": "everyone"
   },
-  "Stoppingme": {
-    "description": "halte das pingen am anfang des streams an.",
+  "stoppingme": {
+    "description": "Halte das Pingen am anfang des Streams an.",
     "permission": "everyone"
   },
-  "Slots": {
-    "description": "spiele slots.",
+  "slots": {
+    "description": "Spiele Slots.",
     "permission": "everyone"
   },
   "rps": {
-    "description": "spiele schere stein papier gegen den bot.",
+    "description": "Spiele Schere Stein papier gegen den Bot.",
     "permission": "everyone"
   },
   "guess": {
-    "description": "rate die zahl die der bot sich ausdenkt",
+    "description": "Rate die Zahl die der Bot sich ausdenkt",
     "permission": "everyone"
   },
   "coinflip": {
-    "description": "mache einen coinflip",
+    "description": "Mache einen Coinflip",
     "permission": "everyone"
   },
   "disable": {
-    "description": "deaktiviere einen command",
-    "permission": "moderator"
+    "description": "Deaktiviere einen Command",
+    "permission": "Moderator"
   },
   "enable": {
-    "description": "aktiviere einen command",
-    "permission": "moderator"
+    "description": "Aktiviere einen Command",
+    "permission": "Moderator"
   },
   "5min": {
     "description": "Starte einen 5 Minuten Timer",
     "permission": "Moderator"
   },
   "5minc": {
-    "description": "stoppe den 5 minuten timer",
-    "permission": "moderator"
+    "description": "Stoppe den 5 Minuten Timer",
+    "permission": "Moderator"
   }
 }
