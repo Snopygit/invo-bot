@@ -1,1 +1,5 @@
-
+{
+  "clip": "Erstellt einen Twitch Clip",
+  "disableclip": "Deaktiviert Clip-Erstellung (nur Mod)",
+  "enableclip": "Aktiviert Clip-Erstellung (nur Mod)"
+}
