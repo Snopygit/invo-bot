@@ -152,7 +152,7 @@
       <li>💻 Maintainer: Snopy</li>
       <li>🛠️ Features: Clip-Erstellung, Ping-System, Minigames</li>
     </ul>
-    <div class="system-info">
+    <div class="system-info" id="system-info">
       <p><strong>Uptime:</strong> Wird geladen...</p>
       <p><strong>CPU-Auslastung:</strong> Wird geladen...</p>
       <p><strong>RAM-Auslastung:</strong> Wird geladen...</p>
@@ -195,6 +195,18 @@
         document.getElementById("command-list").innerHTML = "Fehler beim Laden der Befehle.";
         console.error("Fehler beim Laden von commands.json:", err);
       });
+
+    fetch("system.json")
+      .then(res => res.json())
+      .then(stats => {
+        const sys = document.getElementById("system-info");
+        sys.innerHTML = `
+          <p><strong>Uptime:</strong> ${stats.uptime}</p>
+          <p><strong>CPU-Auslastung:</strong> ${stats.cpu}</p>
+          <p><strong>RAM-Auslastung:</strong> ${stats.ram}</p>
+        `;
+      })
+      .catch(err => console.error("Fehler beim Laden von system.json:", err));
   </script>
 </body>
 </html>
