@@ -169,13 +169,27 @@
       document.querySelector(`nav button[onclick*="${tabId}"]`).classList.add('active');
     }
 
+    let totalSeconds = 0;
+
+    function startUptimeCounter() {
+      setInterval(() => {
+        totalSeconds++;
+        const h = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+        const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+        const s = String(totalSeconds % 60).padStart(2, '0');
+        document.getElementById("uptime").textContent = `${h}:${m}:${s}`;
+      }, 1000);
+    }
+
     function fetchSystemInfo() {
       fetch("system.json")
         .then(res => res.json())
         .then(stats => {
-          document.getElementById("uptime").textContent = stats.uptime;
+          const [h, m, s] = stats.uptime.split(":".padEnd(3, '0'));
+          totalSeconds = parseInt(h) * 3600 + parseInt(m) * 60 + parseInt(s);
           document.getElementById("cpu").textContent = stats.cpu;
           document.getElementById("ram").textContent = stats.ram;
+          startUptimeCounter();
         })
         .catch(err => console.error("Fehler beim Laden von system.json:", err));
     }
