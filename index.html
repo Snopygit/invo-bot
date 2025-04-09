@@ -298,7 +298,10 @@ sectionWrapper.appendChild(sectionTitle);
 
               const card = document.createElement("div");
               card.className = "command";
-              card.innerHTML = `
+              card.innerHTML = `
+  <div class="command-name">+${command}</div>
+  <div class="command-desc">${desc}</div>
+  <div class="command-perm">Zugriff: ${perm}</div>
   <div class="command-tip">Klicke für mehr Infos</div>`;
 card.onclick = () => openModal(command, info);
               sectionGrid.appendChild(card);
