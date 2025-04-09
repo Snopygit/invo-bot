@@ -15,12 +15,12 @@
     "category": "Tools"
   },
   "Pingme": {
-    "description": "Werde beim Anfang des streams gepingt.",
+    "description": "Werde beim Anfang des Streams gepingt.",
     "permission": "everyone",
     "category": "Tools"
   },
   "stoppingme": {
-    "description": "Halte das Pingen am anfang des Streams an.",
+    "description": "Halte das Pingen am Anfang des Streams an.",
     "permission": "everyone",
     "category": "Tools"
   },
@@ -30,37 +30,37 @@
     "category": "Minigames"
   },
   "rps": {
-    "description": "Spiele Schere Stein papier gegen den Bot.",
+    "description": "Spiele Schere Stein Papier gegen den Bot.",
     "permission": "everyone",
     "category": "Minigames"
   },
   "guess": {
-    "description": "Rate die Zahl die der Bot sich ausdenkt",
+    "description": "Rate die Zahl, die der Bot sich ausdenkt.",
     "permission": "everyone",
     "category": "Minigames"
   },
   "coinflip": {
-    "description": "Mache einen Coinflip",
+    "description": "Mache einen Coinflip.",
     "permission": "everyone",
     "category": "Minigames"
   },
   "disable": {
-    "description": "Deaktiviere einen Command",
+    "description": "Deaktiviere einen Command.",
     "permission": "Moderator",
     "category": "Modding"
   },
   "enable": {
-    "description": "Aktiviere einen Command",
+    "description": "Aktiviere einen Command.",
     "permission": "Moderator",
     "category": "Modding"
   },
   "5min": {
-    "description": "Starte einen 5 Minuten Timer",
+    "description": "Starte einen 5 Minuten Timer.",
     "permission": "Moderator",
     "category": "Modding"
   },
   "5minc": {
-    "description": "Stoppe den 5 Minuten Timer",
+    "description": "Stoppe den 5 Minuten Timer.",
     "permission": "Moderator",
     "category": "Modding"
   }
