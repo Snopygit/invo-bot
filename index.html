@@ -329,7 +329,7 @@ card.onclick = () => openModal(command, info);
         document.getElementById("bot-ping").textContent = "Fehler";
       });
   </script>
-<div class="modal" id="commandModal">
+<div class="modal" id="commandModal" onclick="if(event.target === this) closeModal()">
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal()">&times;</button>
       <h2 id="modalTitle">Command</h2>
