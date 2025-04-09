@@ -107,7 +107,7 @@
     }
 
     .modal {
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
       width: 100vw;
@@ -333,7 +333,9 @@ card.onclick = () => openModal(command, info);
     document.getElementById('modalCooldown').textContent = info.cooldown || '0 Sekunden';
     document.getElementById('modalUsage').textContent = info.usage || '+' + command;
     document.body.style.backdropFilter = 'blur(5px)';
-    document.getElementById('commandModal').style.display = 'flex';
+    const modal = document.getElementById('commandModal');
+    modal.style.top = window.scrollY + 'px';
+    modal.style.display = 'flex';
   }
 
   function closeModal() {
