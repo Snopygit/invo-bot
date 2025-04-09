@@ -6,54 +6,88 @@
   <title>Invo-Bot Befehle</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg: #1a1b1e;
+      --card-bg: #2a2c2f;
+      --text: #ffffff;
+      --accent: #00ffe4;
+      --muted: #aaaaaa;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       padding: 2rem;
-      background-color: #1e1e1e;
-      color: #ffffff;
+      background-color: var(--bg);
+      color: var(--text);
       font-family: 'Inter', sans-serif;
     }
-    h1 {
-      color: #00ffe4;
-      font-size: 2rem;
-      margin-bottom: 1rem;
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
     }
-    .command-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
+
+    header h1 {
+      font-size: 2.2rem;
+      color: var(--accent);
     }
+
+    .command-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
     .command {
-      background-color: #2b2b2b;
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 1.2rem;
+      transition: transform 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
+
+    .command:hover {
+      transform: translateY(-3px);
+    }
+
     .command-name {
       font-weight: 600;
-      color: #80ffea;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
     }
+
     .command-desc {
-      color: #ccc;
-      margin-top: 0.3rem;
+      font-size: 0.95rem;
+      color: var(--muted);
     }
-    .footer {
+
+    footer {
       margin-top: 3rem;
-      font-size: 0.9rem;
-      color: #777;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
     }
   </style>
 </head>
 <body>
-  <h1> Invo-Bot Befehle</h1>
-  <div class="command-list" id="command-list">
-    <p>Lade Befehle...</p>
-  </div>
+  <header>
+    <h1>🛠️ Invo-Bot Befehlsübersicht</h1>
+    <p>Hier findest du alle verfügbaren Commands für deinen Stream.</p>
+  </header>
 
-  <div class="footer">
-    Letzte Aktualisierung: <span id="last-updated">Unbekannt</span>
-  </div>
+  <section class="command-grid" id="command-list">
+    <p>Lade Befehle...</p>
+  </section>
+
+  <footer>
+    Letzte Aktualisierung: <span id="last-updated">Unbekannt</span><br>
+    Bereitgestellt via GitHub Pages
+  </footer>
 
   <script>
     fetch("commands.json")
@@ -61,14 +95,15 @@
       .then(data => {
         const container = document.getElementById("command-list");
         container.innerHTML = "";
+
         Object.entries(data).forEach(([command, desc]) => {
-          const div = document.createElement("div");
-          div.className = "command";
-          div.innerHTML = `
+          const card = document.createElement("div");
+          card.className = "command";
+          card.innerHTML = `
             <div class="command-name">+${command}</div>
             <div class="command-desc">${desc}</div>
           `;
-          container.appendChild(div);
+          container.appendChild(card);
         });
 
         const now = new Date().toLocaleDateString("de-DE");
