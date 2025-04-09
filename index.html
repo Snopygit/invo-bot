@@ -188,9 +188,8 @@
     <p>Willkommen zur offiziellen Infoseite des Invormativ-Bots.</p>
   </header>
 
-  <nav>
-    <button onclick="showTab('commands')" class="active">📜 Commands</button>
-    <button onclick="showTab('info')">ℹ️ Bot Info</button>
+  
+    <button onclick="showTab('socials')">🌐 Socials</button>
   </nav>
 
   <section id="commands" class="tab-content active">
@@ -224,7 +223,26 @@
     </div>
   </section>
 
-  <script>
+  <section id="socials" class="tab-content">
+    <h2>🌐 Socials</h2>
+    <h3 style="margin-top: 1.5rem; color: var(--accent);">Invormativ</h3>
+    <ul>
+      <li><a href="https://www.twitch.tv/invormativ" target="_blank">🎮 Twitch</a></li>
+      <li><a href="https://www.youtube.com/@invormativ" target="_blank">📺 YouTube</a></li>
+      <li><a href="https://www.instagram.com/invormativ" target="_blank">📷 Instagram</a></li>
+      <li><a href="https://www.tiktok.com/@invormativ" target="_blank">🎵 TikTok</a></li>
+      <li><a href="https://www.tiktok.com/@invormativ" target="_blank">🎵 TikTok</a></li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem; color: var(--accent);">Developer (Snopy)</h3>
+    <ul>
+      <li><a href="https://www.twitch.tv/snopyfnr" target="_blank">🎮 Twitch</a></li>
+      <li><a href="https://www.youtube.com/@Snopyfn" target="_blank">📺 YouTube</a></li>
+    </ul>
+  
+  </section>
+
+<script>
     function showTab(tabId) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('nav button').forEach(el => el.classList.remove('active'));
