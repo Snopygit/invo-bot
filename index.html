@@ -306,7 +306,8 @@
             categories[category][command] = info;
           }
 
-          for (const category of Object.keys(categories)) {
+            const orderedCategories = ["Minigames", "Tools", "Modding"];
+            for (const category of orderedCategories) {
             const sortedCommands = Object.keys(categories[category]).sort();
             const sectionWrapper = document.createElement("div");
 sectionWrapper.className = "category-wrapper";
