@@ -47,6 +47,12 @@
       color: #000;
     }
 
+    nav button:hover:not(.active) {
+    background-color: #1e1e1e;
+    transition: background-color 0.2s ease;
+    }
+
+
     .tab-content {
       display: none;
       padding: 0 2rem 2rem;
@@ -72,6 +78,13 @@
     .command-name {
       font-weight: bold;
       color: var(--accent);
+    }
+
+
+    .command:hover {
+    transform: scale(1.02);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 0 10px rgba(0, 240, 224, 0.3);
     }
 
     .command-desc {
