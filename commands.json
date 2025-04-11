@@ -83,7 +83,16 @@
     "usage": "+enable [Command]",
     "category": "Modding"
   },
-  "5min": {
+
+    "spam": {
+    "description": "Spamed eine Nachricht bis zu 100 mal in den Chat.",
+    "permission": "Moderator",
+    "cooldown": "10 Sekunden",
+    "usage": "+spam [Nachricht] [Anzahl]",
+    "category": "Modding"
+  },
+  
+    "5min": {
     "description": "Starte einen 5 Minuten Timer.",
     "permission": "Moderator",
     "cooldown": "0 Sekunden",
