@@ -84,6 +84,15 @@
     "category": "Modding"
   },
 
+    "nuke": {
+    "description": "Nuked Nachrichten über einen bestimmten Zeitraum mit einer bestimmten Bestrafung",
+    "permission": "Moderator",
+    "cooldown": "10 Sekunden",
+    "usage": "+nuke [Phrase] [Zeitraum] [Bestrafung]",
+    "category": "Modding"
+  },
+  
+
     "spam": {
     "description": "Spamed eine Nachricht bis zu 100 mal in den Chat.",
     "permission": "Moderator",
