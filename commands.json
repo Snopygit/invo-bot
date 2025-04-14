@@ -55,6 +55,14 @@
     "usage": "+rps schere/stein/papier",
     "category": "Minigames"
   },
+    "trivia": {
+    "description": "Der Bot stellt dem Chat eine Frage.",
+    "permission": "everyone",
+    "cooldown": "10 Sekunden",
+    "usage": "+trivia, wenn eine Frage offen ist +trivia [antwort]",
+    "category": "Minigames"
+  },
+  
   "guess": {
     "description": "Rate die Zahl, die der Bot sich ausdenkt.",
     "permission": "everyone",
@@ -98,6 +106,14 @@
     "permission": "Moderator",
     "cooldown": "10 Sekunden",
     "usage": "+spam [Nachricht] [Anzahl]",
+    "category": "Modding"
+  },
+
+    "triviaskip": {
+    "description": "Skipped eine Trivia Frage.",
+    "permission": "Moderator",
+    "cooldown": "0 Sekunden",
+    "usage": "+triviaskip",
     "category": "Modding"
   },
   
